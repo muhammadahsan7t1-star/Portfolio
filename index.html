@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>myPortfolio - Ahsan Jarwar</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            darkBg: '#010103',
+            cardBg: '#060609',
+            accentRed: '#ff1133',
+            accentPurple: '#a855f7',
+            accentGold: '#ffb703'
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Custom Style Sheet External Link -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-white antialiased min-h-screen flex flex-col justify-between relative">
+
+  <!-- Splash Screen / Loader -->
+  <div id="intro-splash" class="fixed inset-0 bg-[#010103] z-50 flex flex-col items-center justify-center transition-all duration-1000">
+    <div id="splash-animation-container" class="hidden text-center max-w-xl px-6">
+      <h1 id="splash-text" class="text-4xl md:text-5xl font-black tracking-tight leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-500 min-h-[80px]"></h1>
+    </div>
+  </div>
+
+  <!-- Background Glow & Media Containers -->
+  <div id="dynamic-bg-container" class="fixed inset-0 -z-50 pointer-events-none transition-all duration-1000 bg-[#010103]"></div>
+  <div class="absolute top-0 left-0 w-full h-[600px] bg-gradient-to-b from-red-950/10 via-transparent to-transparent pointer-events-none -z-20"></div>
+  <div class="absolute top-[25%] left-[-10%] w-[600px] h-[600px] bg-red-900/5 rounded-full blur-[160px] pointer-events-none -z-20"></div>
+
+  <!-- Header Section -->
+  <header class="max-w-7xl mx-auto w-full px-6 md:px-8 py-6 flex justify-between items-center relative z-40">
+    <!-- Brand Logo (Redirect completely removed to keep admin panel hidden from public) -->
+    <div class="flex items-center space-x-1.5 select-none active:scale-95 transition-transform">
+      <span class="text-xl font-normal tracking-tight text-gray-300">my<span class="text-accentRed font-black drop-shadow-[0_0_12px_rgba(var(--accent-glow-color),0.6)]" style="color: var(--accent-solid-color) !important;">Portfolio</span></span>
+    </div>
+    <nav class="hidden md:flex items-center space-x-8 text-[11px] font-bold tracking-[0.2em] text-gray-400">
+      <a href="#about" class="hover:text-white transition active:scale-95">ABOUT</a>
+      <a id="nav-portfolio" href="#portfolio" class="hover:text-white transition active:scale-95">PORTFOLIO</a>
+      <a id="nav-pricing" href="#pricing" class="hover:text-white transition active:scale-95">PRICING</a>
+      <a id="nav-faq" href="#faq" class="hover:text-white transition relative active:scale-95" style="color: var(--accent-solid-color) !important;">SUPPORT 
+        <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-accentRed rounded-full shadow-[0_0_8px_rgba(var(--accent-glow-color),0.8)]" style="background-color: var(--accent-solid-color) !important;"></span>
+      </a>
+    </nav>
+    <a href="#pricing" class="px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition shadow-lg hover:scale-105 active:scale-95" style="background-color: var(--accent-solid-color) !important;">GET STARTED</a>
+  </header>
+
+  <!-- Main Website Content Sections -->
+  <main class="max-w-7xl mx-auto px-6 md:px-8 w-full relative z-30">
+    
+    <!-- About / Hero Section -->
+    <section id="about" class="py-12 md:py-20 border-b border-white/5">
+      <div class="card-3d grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-[#050508]/60 backdrop-blur-md rounded-[2rem] p-6 md:p-12 border border-white/5 shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-16 -left-16 w-48 h-48 bg-accentRed/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <!-- Profile Picture Container -->
+        <div class="lg:col-span-4 flex justify-center cursor-pointer">
+          <div class="relative group">
+            <div class="relative w-44 h-44 md:w-52 md:h-52 rounded-full bg-black border-4 border-white/10 overflow-hidden flex items-center justify-center shiny-avatar-container shadow-2xl">
+              <img id="profile-pic" src="" alt="Ahsan" class="w-full h-full object-cover" onerror="handleProfileImageError(this)">
+              <div id="profile-fallback" class="hidden w-full h-full bg-gradient-to-tr from-stone-900 via-[#0e0a14] to-zinc-900 flex items-center justify-center">
+                <span class="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accentRed to-pink-500 drop-shadow-[0_0_15px_rgba(255,17,51,0.7)]">A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Text details -->
+        <div class="lg:col-span-8 flex flex-col space-y-5 text-center lg:text-left">
+          <div class="inline-flex self-center lg:self-start items-center space-x-2 bg-accentRed/10 border border-accentRed/20 px-4 py-1.5 rounded-full text-[9px] font-extrabold tracking-[0.15em] text-accentRed uppercase" style="border-color: rgba(var(--accent-glow-color), 0.2); background-color: rgba(var(--accent-glow-color), 0.1); color: var(--accent-solid-color) !important;">
+            <span class="w-1.5 h-1.5 bg-accentRed rounded-full inline-block mr-1 animate-ping" style="background-color: var(--accent-solid-color) !important;"></span>
+            <span>AVAILABLE FOR HIRE</span>
+          </div>
+          <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-none">Hi, I am <span id="profile-name" class="text-white">Ahsan</span>, <span id="profile-title" class="text-transparent bg-clip-text bg-gradient-to-r from-accentRed via-red-400 to-white drop-shadow-[0_2px_8px_rgba(255,17,51,0.3)] font-black">Professional Video Editor</span></h2>
+          
+          <div class="flex flex-wrap justify-center lg:justify-start gap-1.5 pt-1" id="profile-tags-container">
+            <!-- Tags rendered dynamically by JS -->
+          </div>
+          
+          <p id="profile-bio" class="text-gray-400 text-xs md:text-sm font-normal leading-relaxed max-w-2xl">I specialize in creating high-retention, cinematic video content, shorts videos, next-generation AI workflows, professional designs, and clean portfolio environments.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 border-b border-white/5">
+      <div class="text-center mb-12">
+        <h3 id="ui-portfolio-header-title" class="text-3xl font-black uppercase tracking-wide">PORTFOLIO WORK</h3>
+        <p id="ui-portfolio-header-sub" class="text-gray-400 text-xs mt-2">Filter and browse through my creative visual systems</p>
+        
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap justify-center gap-2 mt-8" id="portfolio-categories-tabs">
+          <button onclick="filterPortfolio('all')" class="port-tab active-tab bg-accentRed text-white px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider transition hover:scale-105 active:scale-95">All</button>
+        </div>
+      </div>
+      
+      <!-- Portfolio Grid -->
+      <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-start"></div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 border-b border-white/5">
+      <div class="text-center mb-16">
+        <h2 id="ui-pricing-header-title" class="text-4xl md:text-5xl font-black tracking-widest uppercase">CHOOSE YOUR <span class="text-accentRed drop-shadow-[0_0_12px_rgba(var(--accent-glow-color),0.6)]" style="color: var(--accent-solid-color) !important;">PACK</span></h2>
+        <p id="ui-pricing-header-sub" class="text-gray-400 mt-3 text-xs md:text-sm font-normal tracking-wide">Powerful content. Professional quality. Built for creators.</p>
+      </div>
+      
+      <!-- Pricing Cards Container -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch max-w-6xl mx-auto w-full">
+        <div id="pricing-grid" class="contents"></div>
+      </div>
+    </section>
+
+    <!-- FAQ Support Section -->
+    <section id="faq" class="py-20 max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h3 id="ui-faq-header-title" class="text-3xl font-black uppercase tracking-wide">FAQ Section</h3>
+        <p id="ui-faq-header-sub" class="text-gray-400 text-xs mt-2">Common questions regarding video production & software integration</p>
+      </div>
+      <div id="faq-container" class="space-y-4"></div>
+    </section>
+
+  </main>
+
+  <!-- Floating Social Media Buttons Dock -->
+  <div id="socials-floating-dock" class="fixed z-40 flex flex-col items-center"></div>
+
+  <!-- Footer -->
+  <footer id="footer" class="border-t border-white/5 bg-[#010102]/95 py-8 px-8 text-center relative z-10 flex items-center justify-center space-x-2">
+    <span class="text-[9px] text-gray-600 uppercase tracking-widest leading-relaxed">&copy; 2026 Ahsan. All Rights Reserved.</span>
+  </footer>
+
+  <!-- Lightbox Media Preview Modal Window -->
+  <div id="lightbox-modal" class="fixed inset-0 items-center justify-center bg-black/95 hidden z-50 p-4" onclick="closeLightbox()">
+    <div id="lightbox-container-box" class="relative bg-white border border-slate-200 rounded-2xl max-w-4xl w-full aspect-video flex flex-col justify-between overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+      <div id="lightbox-content" class="relative w-full h-full overflow-hidden flex items-center justify-center bg-black"></div>
+      
+      <!-- Modal bottom bar details -->
+      <div class="bg-white px-6 py-4 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-20 text-slate-900">
+        <div class="min-w-0">
+          <h4 id="lightbox-video-title" class="text-sm font-bold text-slate-900 uppercase tracking-wider truncate font-sans">Video Title</h4>
+          <div class="flex items-center space-x-3 mt-1.5">
+            <button onclick="toggleLightboxLike()" class="flex items-center space-x-1.5 text-slate-600 hover:text-red-500 transition select-none text-xs font-bold" id="lightbox-like-btn">
+              <svg class="w-5 h-5 fill-current text-slate-400 hover:text-red-500" viewBox="0 0 24 24" id="lightbox-like-icon">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+              <span id="lightbox-likes-count" class="text-slate-700">0</span>
+            </button>
+            <div class="flex items-center space-x-1 ml-4">
+              <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-sans">Speed:</span>
+              <select id="lightbox-speed-select" onchange="changeLightboxVideoSpeed(this.value)" class="bg-slate-100 text-slate-800 border border-slate-200 rounded px-2 py-0.5 text-[10px] focus:outline-none cursor-pointer">
+                <option value="0.5">0.5x</option>
+                <option value="1.0" selected>1.0x (Normal)</option>
+                <option value="1.5">1.5x</option>
+                <option value="2.0">2.0x</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <a id="lightbox-direct-link" href="#" target="_blank" class="text-[10px] font-bold text-slate-500 hover:text-red-500 transition tracking-widest uppercase flex items-center space-x-2 font-sans">
+            <span>LAUNCH DIRECT LINK</span><span>↗</span>
+          </a>
+          <button onclick="closeLightbox()" class="bg-red-600 hover:bg-red-700 text-white font-black text-[10px] tracking-widest uppercase px-5 py-2 rounded-full transition active:scale-95 font-sans">CLOSE PREVIEW</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-notification" class="fixed top-8 left-1/2 -translate-x-1/2 -translate-y-24 opacity-0 pointer-events-none transition-all duration-500 ease-out z-50 max-w-sm w-full px-4">
+    <div class="bg-[#0c0e17] border border-accentRed/30 shadow-[0_0_30px_rgba(var(--accent-glow-color),0.2)] rounded-full px-6 py-3 text-center">
+      <span id="toast-message" class="text-[10px] font-black tracking-[0.2em] text-white">SETTINGS SAVED SUCCESSFULLY</span>
+    </div>
+  </div>
+
+  <!-- External Script files link (Will create in next steps) -->
+  <script src="app.js"></script>
+</body>
+</html>
